@@ -1,0 +1,5 @@
+# ignore git files
+/.git
+
+# ignore IntelliJ files
+/.idea
