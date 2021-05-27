@@ -8,6 +8,8 @@ MTSLUI_PLAYER = {
     -- order as shown in options menu
     WELCOME_MSG,
     AUTO_SHOW_MTSL,
+    -- first load after new version
+    NEW_VERSION = 1,
     MINIMAP = {
         ACTIVE,
         ANGLE,
@@ -136,6 +138,13 @@ MTSLUI_SAVED_VARIABLES = {
             else
                 self:ValidateMTSLLocation()
             end
+
+            -- Only run once when new version of addon is installed
+            if MTSLUI_PLAYER.NEW_VERSION == 1 then
+                -- Overwrite current patch version to max
+                self:SetPatchLevelMTSL(MTSL_DATA.MAX_PATCH_LEVEL)
+                MTSLUI_PLAYER.NEW_VERSION = 0
+            end
         end
     end,
 
@@ -149,7 +158,7 @@ MTSLUI_SAVED_VARIABLES = {
         MTSLUI_PLAYER.WELCOME_MSG = 1
         MTSLUI_PLAYER.AUTO_SHOW_MTSL = 1
         self:ResetMinimap()
-        MTSLUI_PLAYER.PATCH_LEVEL_MTSL = "current"
+        MTSLUI_PLAYER.PATCH_LEVEL_MTSL = MTSL_DATA.MAX_PATCH_LEVEL
         self:ResetEnhancedTooltip()
         self:ResetMTSLLocation()
         self:ResetSplitModes()
@@ -637,8 +646,8 @@ MTSLUI_SAVED_VARIABLES = {
         else
             -- MTSLUI_PLAYER.PATCH_LEVEL_MTSL = "current"
             -- MTSL_DATA.CURRENT_PATCH_LEVEL = self:GetPatchLevelServer()
-            print(MTSLUI_FONTS.COLORS.TEXT.WARNING .. "MTSL: Your data patch level has been reset to 1! Use options menu to change it.")
-            self:SetPatchLevelMTSL(MTSL_DATA.MIN_PATCH_LEVEL)
+            print(MTSLUI_FONTS.COLORS.TEXT.WARNING .. "MTSL: Your data patch level has been reset to " .. MTSL_DATA.MAX_PATCH_LEVEL .. "! Use options menu to change it.")
+            self:SetPatchLevelMTSL(MTSL_DATA.MAX_PATCH_LEVEL)
         end
     end,
 

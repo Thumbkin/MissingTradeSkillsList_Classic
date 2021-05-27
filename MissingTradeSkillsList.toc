@@ -1,9 +1,9 @@
-﻿## Interface: 11306
+﻿## Interface: 11307
 ## Title: Missing TradeSkills List
 ## Author: Thumbkin
 ## Notes: Shows missing skills & recipes for a profession and where to get them.
 ## SavedVariables: MTSL_PLAYERS, MTSLUI_PLAYER
-## Version: 1.13.6
+## Version: 1.13.7
 
 #
 # Load all global variables, saved variables & locale

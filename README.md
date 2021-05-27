@@ -44,6 +44,8 @@ Minimap button & Enhanced tooltip
 
 ### Latest version (v1.13.52)
 
+* Updated .toc for Naxx
+* Overwritten data patch phase to MAX, you can still reset it with options menu if needed  
 * Added options
   * Show source for a recipe in the tooltip
   * Added filter option to show/hide recipes "Alliance only" & "Horde only"
@@ -51,9 +53,10 @@ Minimap button & Enhanced tooltip
 * Fixed bugs
   * Thistle Tea (Cooking) is now only shown & counted for rogues
   * Learning / unlearning a profession now proper updates character & account explorer frame
+  * Changing zone now properly changes "Current zone" in all MTSL frames
 * Fixed data
   * Mooncloth Boots (Tailoring) now requires friendly with Timbermaw Hold
   * Drakk Stonehand now resides in The hinterlands
   * Ezekiel Graves was replaced with Gregory Charles as Poison trainer 
     
-View full version history [here](http://www.thumbkin.be/mtsl/VERSION_HISTORY.html) or VERSION_HISTORY.md inside zip addon
+Full version history is available in VERSION_HISTORY.md inside zip addon

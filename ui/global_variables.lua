@@ -6,7 +6,7 @@
 MTSLUI_ADDON = {
     AUTHOR = "Thumbkin",
     NAME = "Missing TradeSkills List",
-    VERSION = "1.13.51",
+    VERSION = "1.13.52",
 }
 
 -- holds the icons of the professions
