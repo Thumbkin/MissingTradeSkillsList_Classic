@@ -46,5 +46,6 @@ Minimap button & Enhanced tooltip
 ### Latest version (v1.13.54)
 
 * Updated skill, item & specialisation translations for all languages except for Korean, simplified Chinese and traditional Chinese to match live data
+* Updated wrong prices from vendor to match live data
 
 Full version history is available in VERSION_HISTORY.md inside zip addon

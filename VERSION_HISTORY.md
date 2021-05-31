@@ -3,6 +3,7 @@
 ### v1.13.54 (May 30, 2021)
 
 * Updated skill, item & specialisation translations for all languages except for Korean, simplified Chinese and traditional Chinese to match live data
+* Updated wrong prices from vendor to match live data
 
 ### v1.13.53 (May 30, 2021)
 
