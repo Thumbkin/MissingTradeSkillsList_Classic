@@ -42,21 +42,9 @@ Minimap button & Enhanced tooltip
 * Link items to a channel (Say, Guild, Party, Raid or "Auto") or add item to current chat message
 * Ability to drag each MTSL frame around
 
-### Latest version (v1.13.52)
+### Latest version (v1.13.53)
 
-* Updated .toc for Naxx
-* Overwritten data patch phase to MAX, you can still reset it with options menu if needed  
-* Added options
-  * Show source for a recipe in the tooltip
-  * Added filter option to show/hide recipes "Alliance only" & "Horde only"
-  * Recipes obtainable only by opposite faction are hidden by default (Not in Database explorer)
 * Fixed bugs
-  * Thistle Tea (Cooking) is now only shown & counted for rogues
-  * Learning / unlearning a profession now proper updates character & account explorer frame
-  * Changing zone now properly changes "Current zone" in all MTSL frames
-* Fixed data
-  * Mooncloth Boots (Tailoring) now requires friendly with Timbermaw Hold
-  * Drakk Stonehand now resides in The hinterlands
-  * Ezekiel Graves was replaced with Gregory Charles as Poison trainer 
-    
+  * Solved lua errors when running addon for first time
+  * Updated locales
 Full version history is available in VERSION_HISTORY.md inside zip addon
