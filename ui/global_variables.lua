@@ -6,7 +6,34 @@
 MTSLUI_ADDON = {
     AUTHOR = "Thumbkin",
     NAME = "Missing TradeSkills List",
-    VERSION = "1.13.52",
+    VERSION = "1.13.53",
+    SERVER_VERSION_PHASES = {
+        -- max build number from server for phase 1,
+        {
+            ["id"] = 1,
+            ["max_tocversion"] = 11301,
+        },
+        {
+            ["id"] = 2,
+            ["max_tocversion"] = 11302,
+        },
+        {
+            ["id"] = 3,
+            ["max_tocversion"] = 11303,
+        },
+        {
+            ["id"] = 4,
+            ["max_tocversion"] = 11304,
+        },
+        {
+            ["id"] = 5,
+            ["max_tocversion"] = 11305,
+        },
+        {
+            ["id"] = 6,
+            ["max_tocversion"] = 999999,
+        }
+    }
 }
 
 -- holds the icons of the professions

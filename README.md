@@ -47,4 +47,5 @@ Minimap button & Enhanced tooltip
 * Fixed bugs
   * Solved lua errors when running addon for first time
   * Updated locales
+* Data patch level is now set automatic, option is removed
 Full version history is available in VERSION_HISTORY.md inside zip addon

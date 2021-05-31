@@ -629,25 +629,15 @@ MTSLUI_SAVED_VARIABLES = {
     end,
 
     ------------------------------------------------------------------------------------------------
-    -- Sets the number of content patch used to show data
-    --
-    -- @patch_level        Number          Number between MTSL_DATA.MIN_PATCH_LEVEL and MTSL_DATA.MAX_PATCH_LEVEL
+    -- Sets the number of content patch used to show data based on tocversion of server
     ------------------------------------------------------------------------------------------------
-    SetPatchLevelMTSL = function(self, patch_level)
-        if tonumber(patch_level) then
-            -- Set the current level based on server if invalid number
-            if tonumber(patch_level) < tonumber(MTSL_DATA.MIN_PATCH_LEVEL) or
-                    tonumber(patch_level) > tonumber(MTSL_DATA.MAX_PATCH_LEVEL) then
-                patch_level = MTSL_DATA.MIN_PATCH_LEVEL
-            end
-            MTSL_DATA.CURRENT_PATCH_LEVEL = tonumber(patch_level)
-            MTSLUI_PLAYER.PATCH_LEVEL_MTSL = tonumber(patch_level)
-            -- Set the current level based on server
+    SetPatchLevelMTSL = function(self)
+        local patch_level = self:GetPatchLevelServer()
+        if patch_level == 0 then
+            MTSL_DATA.CURRENT_PATCH_LEVEL = MTSL_DATA.MIN_PATCH_LEVEL
+            print(MTSLUI_FONTS.COLORS.TEXT.WARNING .. "MTSL: Could not determine patch level from server! Falling back to phase " .. MTSL_DATA.CURRENT_PATCH_LEVEL .. "(" .. MTSL_LOGIC_WORLD:GetZoneNameById (MTSL_DATA.PHASE_IDS[current_patch_level]) .. ")")
         else
-            -- MTSLUI_PLAYER.PATCH_LEVEL_MTSL = "current"
-            -- MTSL_DATA.CURRENT_PATCH_LEVEL = self:GetPatchLevelServer()
-            print(MTSLUI_FONTS.COLORS.TEXT.WARNING .. "MTSL: Your data patch level has been reset to " .. MTSL_DATA.MAX_PATCH_LEVEL .. "! Use options menu to change it.")
-            self:SetPatchLevelMTSL(MTSL_DATA.MAX_PATCH_LEVEL)
+            MTSL_DATA.CURRENT_PATCH_LEVEL = patch_level
         end
     end,
 
@@ -656,15 +646,19 @@ MTSLUI_SAVED_VARIABLES = {
     ------------------------------------------------------------------------------------------------
     GetPatchLevelServer = function(self)
         -- Determine the current patch level of the server
-        local build_version = GetBuildInfo()
-        local _, _, v, _ = strsplit(".", build_version, 4)
-        -- Check if its a patch level between our limits
-        if v == nil or (v ~= nil and (tonumber(v) < tonumber(MTSL_DATA.MIN_PATCH_LEVEL) or
-                tonumber(v) > tonumber(MTSL_DATA.MAX_PATCH_LEVEL))) then
-            v = MTSL_DATA.CURRENT_PATCH_LEVEL
+        local _, _, _, tocversion = GetBuildInfo()
+        if tocversion then
+            -- make sure we loop the phases in order
+            table.sort(MTSLUI_ADDON.SERVER_VERSION_PHASES, function(a, b) return a.id < b.id end)
+            -- loop each phase until we find a matching version
+            for _, v in pairs(MTSLUI_ADDON.SERVER_VERSION_PHASES) do
+                if v.max_tocversion >= tocversion then
+                    return v.id
+                end
+            end
         end
-
-        return tonumber(v)
+        -- return 0 when not found or could be determined
+        return 0
     end,
 
     ------------------------------------------------------------------------------------------------
@@ -673,10 +667,10 @@ MTSLUI_SAVED_VARIABLES = {
     -- return			Number          The number of content patch
     ------------------------------------------------------------------------------------------------
     GetPatchLevelMTSL = function(self)
-        if MTSLUI_PLAYER.PATCH_LEVEL_MTSL == nil then
-            self:SetPatchLevelMTSL(MTSL_DATA.MIN_PATCH_LEVEL)
+        if MTSLUI_PLAYER.CURRENT_PATCH_LEVEL == nil then
+            self:SetPatchLevelMTSL()
         end
-        return MTSLUI_PLAYER.PATCH_LEVEL_MTSL
+        return MTSLUI_PLAYER.CURRENT_PATCH_LEVEL
     end,
 
     ------------------------------------------------------------------------------------------------
