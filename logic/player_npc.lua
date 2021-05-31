@@ -27,53 +27,66 @@ MTSL_LOGIC_PLAYER_NPC = {
         -- ignore first return since its localised
         local _, player_class = UnitClass("player")
 
-        if name == nil or realm == nil or
-                faction == nil or xp_level == nil then
-            print(MTSLUI_FONTS.COLORS.TEXT.ERROR .. "MTSL: Could not load player info! Try reloading this addon")
+        if name == nil then return "name" end
+        if realm == nil then return "realm" end
+        if faction == nil then return "faction" end
+        if xp_level == nil then return "xp_level" end
+        if player_class == nil then return "player_class" end
+
+        -- First time we save a character, so create a new array
+        if not MTSL_PLAYERS then
+            MTSL_PLAYERS = {}
         end
 
-        local current_player = MTSL_PLAYERS[realm]
-        -- Realm not yet registered so create it
-        if current_player == nil then
+        -- Check if realm exits
+        if not MTSL_PLAYERS[realm] then
             MTSL_PLAYERS[realm] = {}
-            -- Realm exists, so see if we have saved the char already
-        else
-            current_player = MTSL_PLAYERS[realm][name]
         end
 
-        -- Player not found on realm, so save him
-        if current_player == nil then
+        -- try and load the player
+        local current_player = MTSL_PLAYERS[realm][name]
+
+        local return_code = "none"
+
+        -- Player was saved before, so load it
+        if current_player then
+            current_player = MTSL_PLAYERS[realm][name]
+
+            -- Update class, faction & xp_level, just in case
+            MTSL_CURRENT_PLAYER.CLASS = string.lower(player_class)
+            MTSL_CURRENT_PLAYER.XP_LEVEL = xp_level
+            MTSL_CURRENT_PLAYER.FACTION = faction
+
+            return_code = "existing"
+            -- new player so create it and add it
+        else
             -- Not found so create a new one
             current_player = {
                 NAME = name,
                 REALM = realm,
                 FACTION = faction,
                 XP_LEVEL = xp_level,
+                CLASS = player_class,
                 TRADESKILLS = {},
             }
-            -- Get additional player info to save
-            print(MTSLUI_FONTS.COLORS.TEXT.WARNING .. "MTSL: Saving new player. Please open all profession windows to save skills")
             -- new player added so sort the table (first the realms, then for new realm, sort by name
             MTSL_PLAYERS[realm][name] = current_player
             MTSL_TOOLS:SortArray(MTSL_PLAYERS)
             MTSL_TOOLS:SortArrayByProperty(MTSL_PLAYERS[realm], "name")
-        elseif MTSLUI_SAVED_VARIABLES:GetShowWelcomeMessage() == 1 then
-            print(MTSLUI_FONTS.COLORS.TEXT.SUCCESS .. "MTSL: " .. current_player.NAME .. " (" .. current_player.XP_LEVEL .. ", " .. current_player.FACTION .. ") on " .. current_player.REALM .. " loaded")
+
+            return_code = "new"
         end
+
         -- set the loaded or created player as current one
         MTSL_CURRENT_PLAYER = current_player
-        -- Update class, faction & xp_level, just in case
-        MTSL_CURRENT_PLAYER.CLASS = string.lower(player_class)
-        MTSL_CURRENT_PLAYER.XP_LEVEL = xp_level
-        MTSL_CURRENT_PLAYER.FACTION = faction
-        -- Update guildname
-        local guildname, _, _, _ = GetGuildInfo("player")
-        MTSL_CURRENT_PLAYER.GUILD = guildname or ""
 
         self:CheckSavedProfessions()
         self:RemoveUnlearnedProfessions()
         self:UpdatePlayerSkillLevels()
+
+        return return_code
     end,
+
 
     ------------------------------------------------------------------------------------------------
     --- Update the XP level & faction of a player (called after a "ding")
@@ -571,7 +584,7 @@ MTSL_LOGIC_PLAYER_NPC = {
         }
 
         -- only scan for missing skills if it has a tradeskill/craft frame
-        if MTSL_LOGIC_PROFESSION:IsFramelessProfession(profession_name) == false then
+        if MTSL_LOGIC_PROFESSION:IsFramelessProfession(profession_name) == 0 then
             if profession_name == "Enchanting" then
                 self:UpdateMissingSkillsForCraftCurrentPlayer(profession_name)
             else
