@@ -356,6 +356,7 @@ MTSLUI_EVENT_HANDLER = {
 			MTSLUI_TOGGLE_BUTTON:SwapToTradeSkillMode()
 		end
 		MTSLUI_TOGGLE_BUTTON:Show()
+
 		-- Update the missing skills for the current player
 		MTSL_LOGIC_PLAYER_NPC:UpdateMissingSkillsForProfessionCurrentPlayer(profession_name, current_skill_level, max_level)
 		MTSLUI_MISSING_TRADESKILLS_FRAME:SetCurrentProfessionDetails(profession_name, current_skill_level, MTSL_CURRENT_PLAYER.XP_LEVEL, MTSL_CURRENT_PLAYER.TRADESKILLS[profession_name].SPELLIDS_SPECIALISATION)

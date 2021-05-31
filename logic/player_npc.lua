@@ -584,7 +584,7 @@ MTSL_LOGIC_PLAYER_NPC = {
         }
 
         -- only scan for missing skills if it has a tradeskill/craft frame
-        if MTSL_LOGIC_PROFESSION:IsFramelessProfession(profession_name) == 0 then
+        if MTSL_LOGIC_PROFESSION:IsFramelessProfession(profession_name) == false then
             if profession_name == "Enchanting" then
                 self:UpdateMissingSkillsForCraftCurrentPlayer(profession_name)
             else

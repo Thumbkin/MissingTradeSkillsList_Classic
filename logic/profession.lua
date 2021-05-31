@@ -55,7 +55,7 @@ MTSL_LOGIC_PROFESSION = {
 
         -- alter the skill_name now if needed
         local check_skill_name = false
-        if skill_name ~= nil then
+        if skill_name then
             -- remove leading & trailing spaces
             skill_name = string.gsub(skill_name, "^%s*(.-)%s*$", "%1")
             -- if we still have text to search enable the flag and lowercase the text
@@ -66,7 +66,7 @@ MTSL_LOGIC_PROFESSION = {
         end
 
         -- add all the skills
-        if list_skills ~= nil then
+        if list_skills then
             for _, v in pairs(list_skills) do
                 local skill_passed_filter = true
                 -- Check if name is ok

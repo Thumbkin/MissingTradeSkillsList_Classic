@@ -1,5 +1,12 @@
 ## Version History
 
+### v1.13.53 (May 30, 2021)
+
+* Fixed bugs
+  * Solved lua errors when running addon for first time
+  * Updated MTSL locales
+* Data patch level is now set automatic, option is removed from options menu
+
 ### v1.13.52 (May 27, 2021)
 
 * Updated .toc for Naxx

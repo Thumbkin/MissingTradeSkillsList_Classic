@@ -26,6 +26,7 @@ Minimap button & Enhanced tooltip
 
 ### Key Features
 
+* Data patch phase is automatic set based on server version  
 * List of all available skills & recipes with correct data for Alchemy, Blacksmithing, Cooking, Enchanting, Engineering, First Aid, Fishing, Herbalism, Leatherworking, Mining, Poisons, Skinning & Tailoring
 * View missing skills for a profession (open tradeskill frame and use MTSL button, except Fishing, Herbalism & Skinning)
 * Explorer frames to browse the addon data
@@ -46,6 +47,7 @@ Minimap button & Enhanced tooltip
 
 * Fixed bugs
   * Solved lua errors when running addon for first time
-  * Updated locales
-* Data patch level is now set automatic, option is removed
+  * Updated MTSL locales
+* Data patch level is now set automatic, option is removed from options menu
+
 Full version history is available in VERSION_HISTORY.md inside zip addon
