@@ -43,11 +43,8 @@ Minimap button & Enhanced tooltip
 * Link items to a channel (Say, Guild, Party, Raid or "Auto") or add item to current chat message
 * Ability to drag each MTSL frame around
 
-### Latest version (v1.13.53)
+### Latest version (v1.13.54)
 
-* Fixed bugs  
-  * Solved lua errors when running addon for first time
-  * Updated MTSL locales
-* Data patch level is now set automatic, option is removed from options menu  
+* Updated skill, item & specialisation translations for all languages except for Korean, simplified Chinese and traditional Chinese to match live data
 
 Full version history is available in VERSION_HISTORY.md inside zip addon

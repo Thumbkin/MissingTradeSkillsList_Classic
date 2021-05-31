@@ -3,3 +3,6 @@
 
 # ignore IntelliJ files
 /.idea
+
+# ignore debug files
+/debug
