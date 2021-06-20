@@ -51,7 +51,7 @@ Minimap button & Enhanced tooltip
 ### Support
 
 Found a bug? Want to report wrong data?  
-Make an issue here: https://github.com/Thumbkin/MissingTradeSkillsList_Classic/issues
+Make an issue here: https://github.com/Thumbkin/MissingTradeSkillsList_Classic/issues  
 Make sure to include the following details when making an issue:
 * Locale you play the game in (a.k.a. the language you play the game in)
 * Brief description of the problem
