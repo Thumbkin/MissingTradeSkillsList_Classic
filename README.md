@@ -56,7 +56,7 @@ Make sure to include the following details when making an issue:
 * Locale you play the game in (a.k.a. the language you play the game in)
 * Brief description of the problem
 * The error message (if its a bugreport)
-* The saved content of MissingTradeSkillsList.lua in \_classic\_era\_/WTF/Account/<your account name>/SavedVariables/
+* The saved content of MissingTradeSkillsList.lua in \_classic\_era\_/WTF/Account/\<your account name\>/SavedVariables/
 * Add screenshot(s) to describe the problem or from the errror (optional)
  
 Full version history is available in VERSION_HISTORY.md inside zip addon
